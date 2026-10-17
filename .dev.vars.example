@@ -1,2 +1,1 @@
-GITHUB_WEBHOOK_SECRET=your-github-webhook-secret
 GROK_WEBHOOKS={"infra-alerts":{"url":"https://example.com/grok-webhook-1","key":"key-1"},"pr-reviews":{"url":"https://example.com/grok-webhook-2","key":"key-2"}}

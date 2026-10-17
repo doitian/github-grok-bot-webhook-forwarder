@@ -3,7 +3,8 @@ main = "src/index.js"
 compatibility_date = "2025-01-01"
 
 # Secrets — set with `wrangler secret put <NAME>` (see README):
-#   GITHUB_WEBHOOK_SECRET  the secret you configured on the GitHub webhook
-#   GROK_WEBHOOKS          JSON object mapping route names to Grok Bot webhook
-#                          targets; POST /hooks/<name> forwards to that entry, e.g.
-#                          {"infra-alerts":{"url":"https://...","key":"..."}}
+#   GROK_WEBHOOKS  JSON object mapping route names to Grok Bot webhook targets;
+#                  POST /hooks/<name> forwards to that entry, e.g.
+#                  {"infra-alerts":{"url":"https://...","key":"..."}}
+#                  Each target's key doubles as the GitHub webhook secret for
+#                  the corresponding webhook.

@@ -30,13 +30,10 @@ export default {
       return Response.json({ error: `no webhook configured for "${name}"` }, { status: 404 });
     }
 
-    if (!env.GITHUB_WEBHOOK_SECRET) {
-      return Response.json({ error: 'GITHUB_WEBHOOK_SECRET is not configured' }, { status: 500 });
-    }
-
+    // The target's Grok key doubles as the GitHub webhook secret.
     const body = await request.arrayBuffer();
-    const signature = request.headers.get('X-Hub-Signature-256');
-    if (!signature || !(await verifySignature(env.GITHUB_WEBHOOK_SECRET, body, signature))) {
+    const signature = request.headers.get('X-Hub-Signature-256') ?? '';
+    if (!(await verifySignature(target.key, body, signature))) {
       return Response.json({ error: 'invalid signature' }, { status: 401 });
     }
 
